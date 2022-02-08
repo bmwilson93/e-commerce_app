@@ -24,7 +24,6 @@ const Products = () => {
             </Grid>
     </main>
     )
-    
 }
 
 export default Products;
