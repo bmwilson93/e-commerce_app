@@ -1,3 +1,9 @@
+# E-Commerce Application
+This is a project bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It is a fully functional commerce web application. 
+
+The project is currently being started following a tutorial on React applications. 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
