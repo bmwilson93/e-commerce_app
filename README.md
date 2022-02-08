@@ -4,6 +4,15 @@ This is a project bootstrapped with [Create React App](https://github.com/facebo
 The project is currently being started following a tutorial on React applications. 
 
 
+## Dependancies
+@material-ui/core
+@material-ui-icons
+@chec/commerce.js
+@stripe/react-stripe-js
+@stripe/stripe-js
+react-router-dom
+react-hook-form
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
