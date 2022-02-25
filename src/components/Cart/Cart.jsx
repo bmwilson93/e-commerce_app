@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Typography, Button, Grid } from "@material-ui/core";
 import { CallMissedSharp } from '@material-ui/icons';
 import useStyles from './styles';
+import CartItem from './CartItems/CartItem';
 
 const Cart = ({ cart  }) => {
     const classes= useStyles();
@@ -15,7 +16,7 @@ const Cart = ({ cart  }) => {
             <Grid container spacing={3}>
                 {cart.line_items.map((item) => (
                     <Grid item xs={12} sm={4} key={item.id}>
-                        <div>{item.name}</div> 
+                        <CartItem item={item} />
                     </Grid>
                 ))}
             </Grid>
