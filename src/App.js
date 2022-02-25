@@ -8,6 +8,7 @@ import { Products, Navbar } from './components'; // get the components from the 
 
 const App = () => {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState({});
 
   // returns a promise for the list of products from commerce
   const fetchProducts = async () => {
@@ -16,15 +17,27 @@ const App = () => {
     setProducts(data);
   }
 
+  const fetchCart = async () => {
+    setCart(await commerce.cart.retrieve())
+  }
+
+  const handleAddToCart = async (productId, quantity) => {
+    const item = await commerce.cart.add(productId, quantity);
+    setCart(item.cart);
+  }
+
   // runs on load to fetch the products from commerce api
   useEffect(() => {
     fetchProducts();
+    fetchCart();
   }, []);
+
+  console.log(cart);
 
   return (
     <div>
         <Navbar />
-        <Products products={products} />
+        <Products products={products} onAddToCart={handleAddToCart}/>
     </div>
   )
 };
