@@ -1,11 +1,11 @@
 import React from 'react'
 
-const PaymentForm = () => {
+const AddressForm = () => {
     return (
         <div>
-            PaymentForm
+            AddressForm
         </div>
     )
 }
 
-export default PaymentForm
+export default AddressForm
