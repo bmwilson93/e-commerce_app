@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 const App = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
+  const [order, setOrder] = useState({});
+  const [errorMessage, setErrorMessage] = useState('');
 
   // returns a promise for the list of products from commerce
   const fetchProducts = async () => {
@@ -40,6 +42,24 @@ const App = () => {
     setCart(cart);
   }
 
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh();
+
+    setCart(newCart);
+  }
+
+  const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+    try {
+      const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
+
+      setOrder(incomingOrder);
+      refreshCart();
+    }
+    catch (error) {
+      setErrorMessage(error.data.error.message);
+    }
+  }
+
   // runs on load to fetch the products from commerce api
   useEffect(() => {
     fetchProducts();
@@ -62,7 +82,7 @@ const App = () => {
                 handleRemoveFromCart={handleRemoveFromCart}
                 handleEmptyCart={handleEmptyCart}
               />} />
-            <Route path="/checkout" element={ <Checkout cart={cart} /> } />
+            <Route path="/checkout" element={ <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} /> } />
 
           </Routes>
       </div>
