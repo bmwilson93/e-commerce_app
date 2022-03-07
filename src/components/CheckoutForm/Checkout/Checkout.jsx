@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button, CssBaseline } from '@material-ui/core';
-import { Link, useHistory } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import { commerce } from '../../../lib/commerce';
 import useStyles from './styles';
 import AddressForm from '../AddressForm';
@@ -8,12 +8,12 @@ import PaymentForm from '../PaymentForm';
 
 const steps = ['Shipping address', 'Payment details']
 
-const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
+const Checkout = ({ cart, order, onCaptureCheckout, error, handleEmptyCart }) => {
     const [activeStep, setActiveStep] = useState(0);
     const [checkoutToken, setCheckoutToken] = useState(null);
     const [shippingData, setShippingData] = useState({});
     const classes = useStyles();
-    const history = useHistory();
+    // const history = useHistory();
 
     // !!! used to simulate transaction
     const [isFinished, setIsFinished] = useState(false);
@@ -25,7 +25,8 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
                 const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
                 setCheckoutToken(token);
             } catch (error) {
-                history.pushState('/');
+                console.log(error);
+                //history.pushState('/');
             }
         }
 
@@ -60,13 +61,11 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
             <Button component={Link} to="/" variant="outlined" type="button">Back to Home</Button>
         </>
     ) : isFinished ? (
-        // This is shown for a mock transaction
+        // !!! This is shown for a mock transaction
+        // ID LIKE TO EMPTY THE CART HERE BUT I CANT GET IT TO WORK OSDJFOSDHFGHEWQOIWEHFOIUWEHFLE!!!!!!!!!!
         <>
             <div>
                 <Typography variant="h5">Thank you for your purchase</Typography>
-                <Divider className={classes.divider} />
-                <Typography variant="subtitle2">Order ref: 4444444444</Typography>
-
             </div>
             <br />
             <Button component={Link} to="/" variant="outlined" type="button">Back to Home</Button>
