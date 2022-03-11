@@ -8,7 +8,7 @@ import PaymentForm from '../PaymentForm';
 
 const steps = ['Shipping address', 'Payment details']
 
-const Checkout = ({ cart, order, onCaptureCheckout, error, handleEmptyCart }) => {
+const Checkout = ({ cart, order, onCaptureCheckout, error, handleEmptyCart}) => {
     const [activeStep, setActiveStep] = useState(0);
     const [checkoutToken, setCheckoutToken] = useState(null);
     const [shippingData, setShippingData] = useState({});
@@ -62,13 +62,13 @@ const Checkout = ({ cart, order, onCaptureCheckout, error, handleEmptyCart }) =>
         </>
     ) : isFinished ? (
         // !!! This is shown for a mock transaction
-        // ID LIKE TO EMPTY THE CART HERE BUT I CANT GET IT TO WORK OSDJFOSDHFGHEWQOIWEHFOIUWEHFLE!!!!!!!!!!
         <>
             <div>
+                
                 <Typography variant="h5">Thank you for your purchase</Typography>
             </div>
             <br />
-            <Button component={Link} to="/" variant="outlined" type="button">Back to Home</Button>
+            <Button onClick={handleEmptyCart} component={Link} to="/" variant="outlined" type="button">Back to Home</Button>
         </>
     ) : (
         <div className={classes.spinner}>
